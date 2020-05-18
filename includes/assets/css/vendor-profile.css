@@ -1,0 +1,70 @@
+/* Vendor Profile Page Styles */
+div.vendor-meta {
+    line-height: 1.7em;
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    align-content: space-evenly;
+}
+.vendor-meta svg {
+    fill: #8CBCBF;
+    height: 1.4em;
+    width: 1.4em;
+    float: left;
+}
+.vendor-meta .vendor-address, .vendor-meta .vendor-website, .vendor-meta .vendor-phone-call, .vendor-meta .vendor-phone-text {
+    display: flex;
+    align-items: center;
+
+}
+.vendor-meta .vendor-address-text, .vendor-meta .vendor-website-text, .vendor-meta .vendor-phone-call-text, .vendor-meta .vendor-phone-text-text {
+    padding-left: 0.5em;
+}
+.vendor-meta-second-line {
+    /*padding-top: .5em;*/
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    flex-wrap: wrap;
+    align-content: space-evenly;
+}
+.vendor-meta-second-line .meta-item {
+    padding-top: .7em;
+}
+.vendor-website, .vendor-phone-call {
+    padding-right: 2em;
+}
+.et_post_meta_wrapper {
+    padding-left: 1em;
+    border-left: .5em solid #d15154;
+}
+#main-content .container::before {
+    display: none;
+}
+#main-content #left-area {
+    border-right: 1px solid #e2e2e2;
+}
+
+/******************************* VENDOR STICKY NAV **************************************/
+#et-main-area {
+    /* For full-screen width nav bar */
+    overflow: hidden;
+}
+.vendor-sticky-nav {
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+    border-top: 1px solid lightgrey;
+    border-bottom: 1px solid lightgrey;
+    margin-top: 2em;
+    margin-bottom: 2em;
+}
+.vendor-sticky-nav .vendor-page-nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+.vendor-page-nav .nav-item {
+    padding: 1em;
+}
+
+

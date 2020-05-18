@@ -1,0 +1,10 @@
+/* Friday Next CSS Additions to Vendor List Page */
+div.wf-column {
+	float:left;
+	width: 25%;
+	min-width: 200px;
+}
+.swiper-container {
+	width: 100%;
+	height: 400px;
+}
