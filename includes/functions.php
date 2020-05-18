@@ -36,7 +36,7 @@ function fn_enqueue_styles() {
     if( get_post_type() == 'vendor_profile' ) {
         wp_register_style( 'vendor_profile_style', plugins_url('assets/css/vendor-profile.css', __FILE__), array(), FRIDAY_NEXT_EXTRAS_VERSION );
         wp_enqueue_style( 'vendor_profile_style' );
-        wp_register_script('vendor_profile_script', plugins_url('assets/js/scripts.js', __FILE__), array('jquery'), FRIDAY_NEXT_EXTRAS_VERSION, true);
+        wp_register_script('vendor_profile_script', plugins_url('assets/js/scripts.js', __FILE__), array('jquery', 'swiper_slider'), FRIDAY_NEXT_EXTRAS_VERSION, true);
         wp_enqueue_script('vendor_profile_script');
         wp_register_script('swiper_slider', plugins_url('../node_modules/swiper/js/swiper.js', __FILE__));
         wp_enqueue_script('swiper_slider');

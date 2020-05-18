@@ -148,18 +148,51 @@ $is_page_builder_used = et_pb_is_pagebuilder_used(get_the_ID());
                                 // Insert the photo gallery, and video gallery
                                 $photo_gallery = get_field("photo_gallery", get_the_ID());
                                 $size = "full";
-                                if( $photo_gallery ) : ?>
-                                    <div class="swiper-container">
-                                        <div class="swiper-wrapper">
-                                            <?php foreach( $photo_gallery as $image_id ): ?>
-                                                <div class="swiper-slide">
-                                                    <?php echo wp_get_attachment_image($image_id, $size); ?>
-                                                </div>
-                                            <?php endforeach; ?>
-                                        </div>
+                                if( $photo_gallery ) :
+                                $total = sizeof($photo_gallery); ?>
+                                <div class="swiper-container">
+                                    <div class="swiper-wrapper">
+                                        <?php foreach ($photo_gallery as $image_id): ?>
+                                            <div class="swiper-slide">
+                                                <?php echo wp_get_attachment_image($image_id, $size); ?>
+                                            </div>
+                                        <?php endforeach; ?>
                                     </div>
-                                <?php endif;
+                                    <div class="swiper-pagination"></div>
 
+                                    <div class="swiper-button-prev"></div>
+                                    <div class="swiper-button-next"></div>
+                                </div>
+                                <?php endif; ?>
+                                <script type="text/javascript">
+                                    var swiper = new Swiper('.swiper-container', {
+                                        slidesPerView: 'auto',
+                                        centeredSlides: true,
+                                        loop: true,
+                                        loopedSlides: <?php echo $total; ?>,
+                                        spaceBetween: 5,
+                                        pagination: {
+                                            el: '.swiper-pagination',
+                                            clickable: true,
+                                        },
+                                        navigation: {
+                                            nextEl: '.swiper-button-next',
+                                            prevEl: '.swiper-button-prev'
+                                        },
+                                        on: {
+                                            init: function() {
+                                                // find width of image and dynamically assign width of parent div (.swiper-slide)
+                                                var $img_width = jQuery('.swiper-slide-active img').width();
+                                                var $container_width = jQuery('.swiper-container').width();
+                                                if($img_width < $container_width*.8) {
+                                                    jQuery('.swiper-slide-active').width($img_width);
+                                                }
+                                            },
+                                        },
+                                    });
+                                </script>
+
+                                <?php
                                 the_field("about_this_vendor", get_the_ID());
 
                                 wp_link_pages(array('before' => '<div class="page-links">' . esc_html__('Pages:', 'Divi'), 'after' => '</div>'));
