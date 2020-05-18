@@ -90,3 +90,6 @@ div.vendor-meta {
     -webkit-align-items: center;
     align-items: center;
 }
+.swiper-slide.swiper-slide-active {
+    max-width: 80%;
+}

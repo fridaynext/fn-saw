@@ -182,12 +182,42 @@ $is_page_builder_used = et_pb_is_pagebuilder_used(get_the_ID());
                                         on: {
                                             init: function() {
                                                 // find width of image and dynamically assign width of parent div (.swiper-slide)
+                                                var $img_height = jQuery('.swiper-slide-active img').height();
                                                 var $img_width = jQuery('.swiper-slide-active img').width();
-                                                var $container_width = jQuery('.swiper-container').width();
-                                                if($img_width < $container_width*.8) {
-                                                    jQuery('.swiper-slide-active').width($img_width);
+                                                var $container_height = jQuery('.swiper-container').height();
+                                                if($img_height > $container_height) {
+                                                    $new_img_width = $container_height * $img_width / $img_height;
+                                                    jQuery('.swiper-slide-active').width($new_img_width);
+                                                    jQuery('.swiper-slide-active').height('auto');
                                                 }
                                             },
+                                            slideChange: function () {
+                                                // do the same, but when the slides change
+                                                var $img_height = jQuery('.swiper-slide-active img').height();
+                                                var $img_width = jQuery('.swiper-slide-active img').width();
+                                                var $container_height = jQuery('.swiper-container').height();
+                                                if($img_height > $container_height) {
+                                                    // do $container_height * $img_width / $img_height - for new image width
+                                                    var $new_img_width = $container_height * $img_width / $img_height;
+                                                    jQuery('.swiper-slide-active').width($new_img_width);
+                                                    jQuery('.swiper-slide-active img').width($new);
+                                                }
+                                                var $prev_img_height = jQuery('.swiper-slide-prev img').height();
+                                                var $prev_img_width = jQuery('.swiper-slide-prev img').width();
+                                                if($prev_img_height > $container_height) {
+                                                    var $new_img_width = $container_height * $prev_img_width / $prev_img_height;
+                                                    jQuery('.swiper-slide-prev').width($new_img_width);
+                                                    jQuery('.swiper-slide-prev').height('');
+                                                }
+                                                var $next_img_height = jQuery('.swiper-slide-next img').height();
+                                                var $next_img_width = jQuery('.swiper-slide-next img').height();
+                                                if($next_img_height > $container_height) {
+                                                    var $new_img_width = $container_height * $next_img_width / $next_img_height;
+                                                    jQuery('.swiper-slide-next').width($new_img_width);
+                                                    jQuery('.swiper-slide-next').height('100%');
+                                                }
+                                            }
+
                                         },
                                     });
                                 </script>
