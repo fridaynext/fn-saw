@@ -283,7 +283,21 @@ $is_page_builder_used = et_pb_is_pagebuilder_used(get_the_ID());
                                 <h2 id="comparison-guides"><span class="vendor-header-triangle"></span>Comparison Guides</h2>
 
                                 <?php /******************** 360° Virtual Tours ********************/ ?>
-                                <h2 id="360-tours"><span class="vendor-header-triangle"></span>360° Virtual Tours of <?php echo get_the_title(); ?></h2>
+
+                                <?php
+                                    if( $url_360 = get_field('360-virtual-tour', get_the_ID()) ) { ?>
+                                        <h2 id="360-tours"><span class="vendor-header-triangle"></span>360° Virtual Tours of <?php echo get_the_title(); ?></h2>
+                                        <?php $url_360 = get_field('360-virtual-tour', get_the_ID()); ?>
+                                        <a href="<?php echo $url_360; ?>"><img src="<?php echo esc_url( plugins_url( '../assets/img/San-Antonio-Weddings-360-Virtual-Tour-Animated.gif', __FILE__ ) ); ?>" width="100%" height="auto" /></a>
+                                    <?php } else {
+                                        // no 360 tour for this vendor
+
+
+                                    }
+
+                                ?>
+
+
 
                                 <?php wp_link_pages(array('before' => '<div class="page-links">' . esc_html__('Pages:', 'Divi'), 'after' => '</div>'));
                                 ?>
