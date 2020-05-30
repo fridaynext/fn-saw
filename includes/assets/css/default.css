@@ -1,0 +1,11 @@
+/******************************* VARIABLES FOR ALL STYLING **************************************/
+/******* SITE COLORS *******/
+:root {
+    --red-color: #d15154;
+    --main-teal-color: #8cbcbf;
+    --dark-teal-color: #475b5c;
+    --black-color: #000;
+    --medium-gray-color: #c8c8c8;   /* used on page up arrow and some gray text */
+    --light-gray-color: #dfdfdf;    /* Some Backgrounds and Icons */
+    --lightest-gray-color: #f7f7f7; /* to be used sparingly – mainly on soft gray backgrounds */
+}

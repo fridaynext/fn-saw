@@ -7,7 +7,7 @@ div.vendor-meta {
     align-content: space-evenly;
 }
 .vendor-meta svg {
-    fill: #8CBCBF;
+    fill: var(--main-teal-color);
     height: 1.4em;
     width: 1.4em;
     float: left;
@@ -36,13 +36,13 @@ div.vendor-meta {
 }
 .et_post_meta_wrapper {
     padding-left: 1em;
-    border-left: .5em solid #d15154;
+    border-left: .5em solid var(--red-color);
 }
 #main-content .container::before {
     display: none;
 }
 #main-content #left-area {
-    border-right: 1px solid #e2e2e2;
+    border-right: 1px solid var(--light-gray-color);
 }
 
 /******************************* VENDOR STICKY NAV **************************************/
@@ -53,8 +53,8 @@ div.vendor-meta {
 .vendor-sticky-nav {
     width: 100vw;
     margin-left: calc(-50vw + 50%);
-    border-top: 1px solid lightgrey;
-    border-bottom: 1px solid lightgrey;
+    border-top: 1px solid var(--light-gray-color);
+    border-bottom: 1px solid var(--light-gray-color);
     margin-top: 2em;
     margin-bottom: 2em;
 }
@@ -92,4 +92,75 @@ div.vendor-meta {
 }
 .swiper-slide.swiper-slide-active {
     max-width: 80%;
+}
+
+/******************************* SECTION HEADERS **************************************/
+body.single-vendor_profile h2 {
+    padding-top: 25px;
+    padding-bottom: 15px;
+    color: var(--black-color);
+}
+span.vendor-header-triangle {
+    display: inline-block;
+    width: 0;
+    height: 0;
+    padding-right: 12px;
+    border-top: 12px solid transparent;
+    border-bottom: 12px solid transparent;
+    border-left: 15px solid var(--red-color);
+}
+
+/******************************* SPECIAL OFFERS **************************************/
+.special-offer {
+    border: 1px solid var(--light-gray-color);
+    border-radius: 3px;
+    padding: 25px;
+    margin-bottom: 10px;
+}
+.special-offer h4 {
+    padding-bottom: 5px;
+    color: var(--black-color);
+}
+.special-offer p {
+    padding-top: 10px;
+}
+
+/******************************* BUTTONS **************************************/
+div.saw-button {
+    padding-top: 15px;
+}
+div.saw-button.right {
+    display: flex;
+    justify-content: flex-end;
+}
+div.saw-button a {
+    color: var(--red-color);
+    position: relative;
+    background: transparent;
+    border: 2px solid var(--red-color);
+    border-radius: 10px;
+    padding: 5px 20px;
+    text-transform: uppercase;
+    font-size: 1.2em;
+    transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    white-space: nowrap;
+}
+div.saw-button a svg {
+    opacity: 0;
+    line-height: 1.2em;
+    margin-left: -1em;
+    color: #FFF;
+    transition: .3s;
+    -moz-transition: .3s;
+}
+div.saw-button a:hover {
+    background: var(--red-color);
+    color: #FFF;
+    padding: 5px 11px;
+    box-shadow: 5px 10px 10px var(--medium-gray-color);
+}
+div.saw-button a:hover svg {
+    opacity: 1;
+    margin-left: 0;
 }

@@ -114,15 +114,16 @@ $is_page_builder_used = et_pb_is_pagebuilder_used(get_the_ID());
 
                 <?php // **** Add a sticky nav bar that will work all the way down the page ***** // ?>
 
+                <?php  /* TODO: Do a check to see if these sections need to exist, then print their links and related sections */ ?>
                 <div class="vendor-sticky-nav">
                     <ul class="vendor-page-nav">
-                        <li class="nav-item">Gallery</li>
-                        <li class="nav-item">About</li>
-                        <li class="nav-item">Offers/Events</li>
-                        <li class="nav-item">Reviews</li>
-                        <li class="nav-item">In the Press</li>
-                        <li class="nav-item">Comparison Guide</li>
-                        <li class="nav-item">360° Tour</li>
+                        <li class="nav-item"><a href="#vendor-gallery">Gallery</a></li>
+                        <li class="nav-item"><a href="#about-vendor">About</a></li>
+                        <li class="nav-item"><a href="#special-offers">Offers/Events</a></li>
+                        <li class="nav-item"><a href="#vendor-reviews">Reviews</a></li>
+                        <li class="nav-item"><a href="#in-the-press">In the Press</a></li>
+                        <li class="nav-item"><a href="#comparison-guides">Comparison Guide</a></li>
+                        <li class="nav-item"><a href="#360-tours">360° Tour</a></li>
                     </ul>
 
                 </div>
@@ -150,7 +151,7 @@ $is_page_builder_used = et_pb_is_pagebuilder_used(get_the_ID());
                                 $size = "full";
                                 if( $photo_gallery ) :
                                 $total = sizeof($photo_gallery); ?>
-                                <div class="swiper-container">
+                                <div id="vendor-gallery" class="swiper-container">
                                     <div class="swiper-wrapper">
                                         <?php foreach ($photo_gallery as $image_id): ?>
                                             <div class="swiper-slide">
@@ -222,10 +223,69 @@ $is_page_builder_used = et_pb_is_pagebuilder_used(get_the_ID());
                                     });
                                 </script>
 
+                                <h2 id="about-vendor"><span class="vendor-header-triangle"></span>About <?php echo get_the_title(); ?></h2>
                                 <?php
                                 the_field("about_this_vendor", get_the_ID());
 
-                                wp_link_pages(array('before' => '<div class="page-links">' . esc_html__('Pages:', 'Divi'), 'after' => '</div>'));
+                                /******************** Special Offers & Events ********************/ ?>
+                                <h2 id="special-offers"><span class="vendor-header-triangle"></span>Special Offers & Events</h2>
+                                <?php
+
+                                    $special_offers = get_posts( array(
+                                        'post_type' => 'special_offers',
+                                        'meta_key'  => 'vendor',
+                                        'meta_value' => get_the_ID() // ensures we're only getting special offers for this vendor
+                                    ));
+                                    if($special_offers) {
+                                        // we have some matches - let's grab them ?>
+                                        <div class="special-offer-container">
+
+                                            <?php foreach ($special_offers as $offer) {
+                                                if($end_date = get_field('offer_end_date', $offer->ID)) {
+                                                    $end_date = "Offer Ends: " . get_field('offer_end_date', $offer->ID);
+                                                } else {
+                                                    $end_date = "Permanent Promotion";
+                                                }
+                                                ?>
+                                                <div class="special-offer">
+                                                    <h4><?php echo get_the_title($offer->ID); ?></h4>
+                                                    <span class="offer-timeline"><?php echo $end_date; ?></span>
+                                                    <p><?php echo $offer->post_content; ?></p>
+                                                    <div class="saw-button right">
+                                                        <a href="#">Tell Me More <i
+                                                                    class="fa fa-angle-double-right pl-lg-2 pl-1"
+                                                                    aria-hidden="true"></i></a>
+                                                    </div>
+                                                </div>
+                                            <?php } ?>
+
+                                        </div> <!-- END .special-offer-container -->
+                                    <?php }
+                                ?>
+
+                                <?php /******************** Reviews ********************/ ?>
+                                <h2 id="vendor-reviews"><span class="vendor-header-triangle"></span>Reviews</h2>
+                                <?php echo get_field('wedding_wire_reviews_html', get_the_ID()); ?>
+
+                                <?php /******************** In the Press ********************/ ?>
+                                <h2 id="in-the-press"><span class="vendor-header-triangle"></span>In the Press</h2>
+                                <?php
+                                $press_args = array(
+                                    'post_type' => array(
+                                        'featured_spotlights',
+                                        'styled_shoot',
+                                        'wedding_story'
+                                    ),
+                                );
+                                ?>
+
+                                <?php /******************** Comparison Guides ********************/ ?>
+                                <h2 id="comparison-guides"><span class="vendor-header-triangle"></span>Comparison Guides</h2>
+
+                                <?php /******************** 360° Virtual Tours ********************/ ?>
+                                <h2 id="360-tours"><span class="vendor-header-triangle"></span>360° Virtual Tours of <?php echo get_the_title(); ?></h2>
+
+                                <?php wp_link_pages(array('before' => '<div class="page-links">' . esc_html__('Pages:', 'Divi'), 'after' => '</div>'));
                                 ?>
                             </div> <!-- .entry-content -->
                             <div class="et_post_meta_wrapper">
