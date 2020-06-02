@@ -172,11 +172,7 @@ $is_page_builder_used = et_pb_is_pagebuilder_used(get_the_ID());
                                         centeredSlides: true,
                                         loop: false,
                                         loopedSlides: <?php echo $total; ?>,
-                                        spaceBetween: 10,
-                                        pagination: {
-                                            el: '.swiper-pagination',
-                                            clickable: true,
-                                        },
+                                        spaceBetween: 5,
                                         navigation: {
                                             nextEl: '.swiper-button-next',
                                             prevEl: '.swiper-button-prev'

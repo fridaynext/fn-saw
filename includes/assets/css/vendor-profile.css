@@ -119,6 +119,18 @@ div.vendor-meta {
     align-items: center;
     transition: transform 0.2s ease-in-out;
 }
+.swiper-slide::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0,0,0,.4);
+    transition: .3s background;
+    pointer-events: none;
+    z-index: 5;
+}
 .swiper-slide img {
     max-width: 800px;
     width: auto;
@@ -129,6 +141,9 @@ div.vendor-meta {
     /*!*transform: scale(1.1);*!*/
     /*max-width: 70%;*/
 }
+.swiper-slide.swiper-slide-active::before {
+    background: 0 0;
+}
 .swiper-slide-prev {
     transform: scale3d(.95,.95,1);
     transform-origin: center right;
@@ -136,6 +151,9 @@ div.vendor-meta {
 .swiper-slide-next {
     transform: scale3d(.95,.95,1);
     transform-origin: center left;
+}
+.swiper-button-prev, .swiper-button-next {
+    color: white;
 }
 
 /******************************* SECTION HEADERS **************************************/
