@@ -83,7 +83,8 @@ $is_page_builder_used = et_pb_is_pagebuilder_used(get_the_ID());
                                     $phone_text = $matches[1] . '-' . $matches[2] . '-' . $matches[3];
                                 }
                                 ?>
-                                <div class="vendor-phone-text-text"><?php echo $phone_text; ?></div>
+                                <?php /* TODO: Change this to be a Trello link for SMS capability! */ ?>
+                                <div class="vendor-phone-text-text"><a href="#">Text Us Now</a></div>
                             </div>
 
                         </div>
@@ -169,9 +170,9 @@ $is_page_builder_used = et_pb_is_pagebuilder_used(get_the_ID());
                                     var swiper = new Swiper('.swiper-container', {
                                         slidesPerView: 'auto',
                                         centeredSlides: true,
-                                        loop: true,
+                                        loop: false,
                                         loopedSlides: <?php echo $total; ?>,
-                                        spaceBetween: 5,
+                                        spaceBetween: 10,
                                         pagination: {
                                             el: '.swiper-pagination',
                                             clickable: true,
@@ -183,42 +184,52 @@ $is_page_builder_used = et_pb_is_pagebuilder_used(get_the_ID());
                                         on: {
                                             init: function() {
                                                 // find width of image and dynamically assign width of parent div (.swiper-slide)
-                                                var $img_height = jQuery('.swiper-slide-active img').height();
-                                                var $img_width = jQuery('.swiper-slide-active img').width();
-                                                var $container_height = jQuery('.swiper-container').height();
-                                                if($img_height > $container_height) {
-                                                    $new_img_width = $container_height * $img_width / $img_height;
-                                                    jQuery('.swiper-slide-active').width($new_img_width);
-                                                    jQuery('.swiper-slide-active').height('auto');
-                                                }
-                                            },
-                                            slideChange: function () {
-                                                // do the same, but when the slides change
-                                                var $img_height = jQuery('.swiper-slide-active img').height();
-                                                var $img_width = jQuery('.swiper-slide-active img').width();
-                                                var $container_height = jQuery('.swiper-container').height();
-                                                if($img_height > $container_height) {
-                                                    // do $container_height * $img_width / $img_height - for new image width
-                                                    var $new_img_width = $container_height * $img_width / $img_height;
-                                                    jQuery('.swiper-slide-active').width($new_img_width);
-                                                    jQuery('.swiper-slide-active img').width($new);
-                                                }
-                                                var $prev_img_height = jQuery('.swiper-slide-prev img').height();
-                                                var $prev_img_width = jQuery('.swiper-slide-prev img').width();
-                                                if($prev_img_height > $container_height) {
-                                                    var $new_img_width = $container_height * $prev_img_width / $prev_img_height;
-                                                    jQuery('.swiper-slide-prev').width($new_img_width);
-                                                    jQuery('.swiper-slide-prev').height('');
-                                                }
-                                                var $next_img_height = jQuery('.swiper-slide-next img').height();
-                                                var $next_img_width = jQuery('.swiper-slide-next img').height();
-                                                if($next_img_height > $container_height) {
-                                                    var $new_img_width = $container_height * $next_img_width / $next_img_height;
-                                                    jQuery('.swiper-slide-next').width($new_img_width);
-                                                    jQuery('.swiper-slide-next').height('100%');
-                                                }
-                                            }
-
+                                                // set widths of all parent div containers of images
+                                                jQuery('.swiper-slide').each(function (index, element) {
+                                                    // in each swiper-slide, get the child image's width to calculate this wrapper's width
+                                                    let imgWidth = jQuery(this).children().first().width();
+                                                    let imgHeight = jQuery(this).children().first().height();
+                                                    let wrapperHeight = jQuery('.swiper-wrapper').height();
+                                                    jQuery(this).width(imgWidth * wrapperHeight / imgHeight);
+                                                    console.log("updated width: ");
+                                                    console.log(jQuery(this).width());
+                                                });
+                                                // var $img_height = jQuery('.swiper-slide-active img').height();
+                                                // var $img_width = jQuery('.swiper-slide-active img').width();
+                                                // var $container_height = jQuery('.swiper-container').height();
+                                                // if($img_height > $container_height) {
+                                                //     $new_img_width = $container_height * $img_width / $img_height;
+                                                //     jQuery('.swiper-slide-active').width($new_img_width);
+                                                //     jQuery('.swiper-slide-active').height('auto');
+                                                // }
+                                            }//,
+                                        //     slideChange: function () {
+                                        //         // do the same, but when the slides change
+                                        //         var $img_height = jQuery('.swiper-slide-active img').height();
+                                        //         var $img_width = jQuery('.swiper-slide-active img').width();
+                                        //         var $container_height = jQuery('.swiper-container').height();
+                                        //         if($img_height > $container_height) {
+                                        //             // do $container_height * $img_width / $img_height - for new image width
+                                        //             var $new_img_width = $container_height * $img_width / $img_height;
+                                        //             jQuery('.swiper-slide-active').width($new_img_width);
+                                        //             jQuery('.swiper-slide-active img').width($new);
+                                        //         }
+                                        //         var $prev_img_height = jQuery('.swiper-slide-prev img').height();
+                                        //         var $prev_img_width = jQuery('.swiper-slide-prev img').width();
+                                        //         if($prev_img_height > $container_height) {
+                                        //             var $new_img_width = $container_height * $prev_img_width / $prev_img_height;
+                                        //             jQuery('.swiper-slide-prev').width($new_img_width);
+                                        //             jQuery('.swiper-slide-prev').height('');
+                                        //         }
+                                        //         var $next_img_height = jQuery('.swiper-slide-next img').height();
+                                        //         var $next_img_width = jQuery('.swiper-slide-next img').height();
+                                        //         if($next_img_height > $container_height) {
+                                        //             var $new_img_width = $container_height * $next_img_width / $next_img_height;
+                                        //             jQuery('.swiper-slide-next').width($new_img_width);
+                                        //             jQuery('.swiper-slide-next').height('100%');
+                                        //         }
+                                        //     }
+                                        //
                                         },
                                     });
                                 </script>
@@ -279,7 +290,8 @@ $is_page_builder_used = et_pb_is_pagebuilder_used(get_the_ID());
                                 );
                                 ?>
 
-                                <?php /******************** Comparison Guides ********************/ ?>
+                                <?php /******************** Comparison Guides ********************/
+                                        /************** TODO: If musician, this won't be here, but it will be musical samples ************/ ?>
                                 <h2 id="comparison-guides"><span class="vendor-header-triangle"></span>Comparison Guides</h2>
 
                                 <?php /******************** 360° Virtual Tours ********************/ ?>
@@ -292,12 +304,9 @@ $is_page_builder_used = et_pb_is_pagebuilder_used(get_the_ID());
                                     <?php } else {
                                         // no 360 tour for this vendor
 
-
                                     }
 
                                 ?>
-
-
 
                                 <?php wp_link_pages(array('before' => '<div class="page-links">' . esc_html__('Pages:', 'Divi'), 'after' => '</div>'));
                                 ?>
