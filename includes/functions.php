@@ -1,7 +1,7 @@
 <?php
 /**
  * @package FN_Extras
- * @version 1.0
+ * @version 1.0.2
  */
 /*
 Plugin Name: San Antonio Weddings Functionality
@@ -13,7 +13,7 @@ Author URI: https://friday-next.com
 Text Domain: fn_extras
 */
 
-define( 'FRIDAY_NEXT_EXTRAS_VERSION', '1.0.1' );
+define( 'FRIDAY_NEXT_EXTRAS_VERSION', '1.0.2' );
 add_action( 'after_setup_theme', 'FridayNextExtrasInit', 15 );
 
 function FridayNextExtrasInit() {
@@ -22,23 +22,23 @@ function FridayNextExtrasInit() {
 }
 
 function fn_enqueue_styles() {
-    wp_register_style( 'fn_default_styles', plugins_url('assets/css/default.css', __FILE__), array(), FRIDAY_NEXT_EXTRAS_VERSION );
+    wp_register_style( 'fn_default_styles', plugins_url('styles/default.css', __FILE__), array(), FRIDAY_NEXT_EXTRAS_VERSION );
     wp_enqueue_style( 'fn_default_styles' );
-    wp_register_style('swiper_style', plugins_url('../node_modules/swiper/css/swiper.css', __FILE__), array(), FRIDAY_NEXT_EXTRAS_VERSION);
+    wp_register_style('swiper_style', 'https://unpkg.com/swiper/css/swiper.min.css', array(), FRIDAY_NEXT_EXTRAS_VERSION);
     wp_enqueue_style( 'swiper_style' );
     // 'Vendor List' Page Style
     if( get_post_field( 'post_name', get_post() ) == 'vendor-list' ) {
-        wp_register_style( 'vendor_list_style', plugins_url('assets/css/vendor-style.css', __FILE__), array(), FRIDAY_NEXT_EXTRAS_VERSION );
+        wp_register_style( 'vendor_list_style', plugins_url('styles/vendor-style.css', __FILE__), array(), FRIDAY_NEXT_EXTRAS_VERSION );
         wp_enqueue_style( 'vendor_list_style' );
     }
 
     // 'Vendor Profile' Styles
     if( get_post_type() == 'vendor_profile' ) {
-        wp_register_style( 'vendor_profile_style', plugins_url('assets/css/vendor-profile.css', __FILE__), array(), FRIDAY_NEXT_EXTRAS_VERSION );
+        wp_register_style( 'vendor_profile_style', plugins_url('styles/vendor-profile.css', __FILE__), array(), FRIDAY_NEXT_EXTRAS_VERSION );
         wp_enqueue_style( 'vendor_profile_style' );
-        wp_register_script('vendor_profile_script', plugins_url('assets/js/scripts.js', __FILE__), array('jquery', 'swiper_slider'), FRIDAY_NEXT_EXTRAS_VERSION, true);
+        wp_register_script('vendor_profile_script', plugins_url('scripts/scripts.js', __FILE__), array('jquery', 'swiper_slider'), FRIDAY_NEXT_EXTRAS_VERSION, true);
         wp_enqueue_script('vendor_profile_script');
-        wp_register_script('swiper_slider', plugins_url('../node_modules/swiper/js/swiper.js', __FILE__));
+        wp_register_script('swiper_slider', 'https://unpkg.com/swiper/js/swiper.min.js');
         wp_enqueue_script('swiper_slider');
     }
 
