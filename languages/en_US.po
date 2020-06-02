@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: San Antonio Weddings - Custom Functionality 1.0.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/fn-saw\n"
-"POT-Creation-Date: 2020-05-30 20:20:21+00:00\n"
+"POT-Creation-Date: 2020-06-02 02:52:41+00:00\n"
 "PO-Revision-Date: 2020-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -44,7 +44,7 @@ msgstr ""
 msgid "Content entered here will appear inside the module."
 msgstr ""
 
-#: includes/templates/single-vendor_profile.php:302
+#: includes/templates/single-vendor_profile.php:307
 msgid "Pages:"
 msgstr ""
 
