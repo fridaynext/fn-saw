@@ -8,12 +8,12 @@ Plugin Name: San Antonio Weddings Functionality
 Plugin URI: https://friday-next.com/
 Description: This plugin enhances the functionality of the San Antonio Weddings website, without altering the child theme's functions.php file, so it will survive theme updates / changes.
 Author: Friday Next
-Version: 1.0
+Version: 1.0.5
 Author URI: https://friday-next.com
 Text Domain: fn_extras
 */
 
-define( 'FRIDAY_NEXT_EXTRAS_VERSION', '1.0.2' );
+define( 'FRIDAY_NEXT_EXTRAS_VERSION', '1.0.5' );
 add_action( 'after_setup_theme', 'FridayNextExtrasInit', 15 );
 
 function FridayNextExtrasInit() {
@@ -22,27 +22,47 @@ function FridayNextExtrasInit() {
 }
 
 function fn_enqueue_styles() {
-    wp_register_style( 'fn_default_styles', plugins_url('styles/default.css', __FILE__), array(), FRIDAY_NEXT_EXTRAS_VERSION );
+    wp_register_style( 'fn_default_styles', plugins_url('../styles/default.css', __FILE__), array(), FRIDAY_NEXT_EXTRAS_VERSION );
     wp_enqueue_style( 'fn_default_styles' );
     wp_register_style('swiper_style', 'https://unpkg.com/swiper/css/swiper.min.css', array(), FRIDAY_NEXT_EXTRAS_VERSION);
     wp_enqueue_style( 'swiper_style' );
+    wp_register_style( 'header_style', plugins_url('../styles/header.css', __FILE__), array(), FRIDAY_NEXT_EXTRAS_VERSION);
+    wp_enqueue_style('header_style');
     // 'Vendor List' Page Style
     if( get_post_field( 'post_name', get_post() ) == 'vendor-list' ) {
-        wp_register_style( 'vendor_list_style', plugins_url('styles/vendor-style.css', __FILE__), array(), FRIDAY_NEXT_EXTRAS_VERSION );
+        wp_register_style( 'vendor_list_style', plugins_url('../styles/vendor-style.css', __FILE__), array(), FRIDAY_NEXT_EXTRAS_VERSION );
         wp_enqueue_style( 'vendor_list_style' );
     }
 
     // 'Vendor Profile' Styles
     if( get_post_type() == 'vendor_profile' ) {
-        wp_register_style( 'vendor_profile_style', plugins_url('styles/vendor-profile.css', __FILE__), array(), FRIDAY_NEXT_EXTRAS_VERSION );
+        wp_register_style( 'vendor_profile_style', plugins_url('../styles/vendor-profile.css', __FILE__), array(), FRIDAY_NEXT_EXTRAS_VERSION );
         wp_enqueue_style( 'vendor_profile_style' );
-        wp_register_script('vendor_profile_script', plugins_url('scripts/scripts.js', __FILE__), array('jquery', 'swiper_slider'), FRIDAY_NEXT_EXTRAS_VERSION, true);
+        wp_register_script('vendor_profile_script', plugins_url('../scripts/scripts.js', __FILE__), array('jquery', 'swiper_slider'), FRIDAY_NEXT_EXTRAS_VERSION, true);
         wp_enqueue_script('vendor_profile_script');
         wp_register_script('swiper_slider', 'https://unpkg.com/swiper/js/swiper.min.js');
         wp_enqueue_script('swiper_slider');
+        wp_register_script('sticky_bits', plugins_url('../scripts/jquery.stickybits.min.js', __FILE__), array(), FRIDAY_NEXT_EXTRAS_VERSION );
+        wp_enqueue_style('sticky_bits');
     }
 
 }
+
+// Vendor Profile Sidebar
+function vendor_profile_sidebar() {
+    register_sidebar(
+        array (
+            'name' => __( 'Vendor Profile', 'fn_extras' ),
+            'id' => 'vendor-profile-sidebar',
+            'description' => __( 'Vendor Profile Sidebar', 'fn_extras' ),
+            'before_widget' => '<div class="vendor-profile-sidebar-content">',
+            'after_widget' => "</div>",
+            'before_title' => '<div class="vendor-profile-sidebar-title">',
+            'after_title' => '</div>',
+        )
+    );
+}
+add_action( 'widgets_init', 'vendor_profile_sidebar' );
 
 /* Create Vendor User Role */
 add_role(
@@ -212,6 +232,18 @@ function vendors_func( $atts ) {
 // 	return $vendor_html;
 }
 // add_shortcode( 'vendors', 'vendors_func' );
+
+function vendor_url_func( $atts ) {
+    if ( get_post_type() == 'vendor_profile' ) {
+        $button_html = '<div class="saw-button"><a target="_blank" href="';
+        $button_html .= get_field( 'website', get_the_ID() );
+        $button_html .= '">Visit Our Website <i class="fa fa-angle-double-right pl-lg-2 pl-1" aria-hidden="true"></i></a></div>';
+        return $button_html;
+    } else {
+        return '';
+    }
+}
+add_shortcode( 'vendor_url', 'vendor_url_func' );
 
 // Font Awesome Integration
 /**

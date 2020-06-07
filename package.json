@@ -37,5 +37,8 @@
   "cde": {
     "gettext": "saw-fn-saw",
     "prefix": "saw"
+  },
+  "devDependencies": {
+    "stickybits": "^3.7.7"
   }
 }

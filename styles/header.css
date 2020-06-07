@@ -1,0 +1,18 @@
+/****** STYLING THE TOP HEADER NAV ********/
+#menu-header-top-right-menu .header-search {
+    border-right: 1px #a0a0a0 solid;
+}
+#menu-header-top-right-menu li {
+    margin-top: 0;
+    padding-top: 8px;
+}
+#menu-header-top-right-menu li a {
+    text-transform: uppercase;
+}
+#menu-header-top-right-menu .header-search a, #menu-header-top-right-menu .vendor-login a {
+    font-size: .8em;
+}
+#menu-header-top-right-menu .social-icon {
+    padding-left: 5px;
+    padding-right: 5px;
+}

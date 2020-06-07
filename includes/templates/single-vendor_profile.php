@@ -276,15 +276,81 @@ $is_page_builder_used = et_pb_is_pagebuilder_used(get_the_ID());
 
                                 <?php /******************** In the Press ********************/ ?>
                                 <h2 id="in-the-press"><span class="vendor-header-triangle"></span>In the Press</h2>
-                                <?php
-                                $press_args = array(
-                                    'post_type' => array(
-                                        'featured_spotlights',
-                                        'styled_shoot',
-                                        'wedding_story'
-                                    ),
-                                );
-                                ?>
+                                <div class="in-the-press">
+                                    <?php
+                                    // check each post type to see that the vendor meta_key is equal to this vendor's post ID
+                                    $press_args = array(
+                                        'post_type' => array(
+                                            'spotlight',
+                                            'styled_shoot',
+                                            'wedding_story'
+                                        ),
+                                        'meta_key' => 'vendor',
+                                        'meta_value' => get_the_ID()
+                                    );
+
+                                    $vendor_posts = query_posts( $press_args );
+
+                                    $post_types = ['spotlight', 'styled_shoot', 'wedding_story'];
+                                    foreach ( $post_types as $this_type ) {
+                                        foreach ( $vendor_posts as $vendor_post ) {
+                                            if ( $vendor_post->post_type == $this_type) { ?>
+                                                <div class="individual-press-post <?php echo $this_type; ?>">
+                                                    <div class="left-half">
+                                                        <div class="press-type">
+                                                            <?php switch ($this_type) {
+                                                                case 'spotlight':
+                                                                    echo 'Featured Spotlight';
+                                                                    break;
+                                                                case 'styled_shoot':
+                                                                    echo 'Styled Shoot';
+                                                                    break;
+                                                                case 'wedding_story':
+                                                                    echo 'Our Wedding Story';
+                                                                    break;
+                                                                default:
+                                                                    echo 'Blog Article';
+                                                                    break;
+                                                            }?>
+                                                        </div>
+                                                        <div class="featured-image">
+                                                            <?php echo get_the_post_thumbnail($vendor_post->ID); ?>
+                                                        </div>
+                                                    </div>
+                                                    <div class="right-half">
+                                                        <h2 class="press-title">
+                                                            <?php echo get_the_title($vendor_post->ID); ?>
+                                                        </h2>
+                                                        <div class="read-more saw-button">
+                                                            <a href="#">Read More <i
+                                                                class="fa fa-angle-double-right pl-lg-2 pl-1"
+                                                                aria-hidden="true"></i></a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="third-half">
+                                                        <div class="press-social-slider">
+                                                            <div class="share-tab">Share</div>
+                                                            <div class="icon-container">
+                                                                <img class="facebook-share" src="<?php echo esc_url( plugins_url( '../assets/img/Social-Media-Icons-SAW-FB.png', __FILE__ ) ); ?>" alt="facebook-share">
+                                                                <img class="instagram-share" src="<?php echo esc_url( plugins_url( '../assets/img/Social-Media-Icons-SAW-Instagram.png', __FILE__ ) ); ?>" alt="instagram-share">
+                                                                <img class="pinterest-share" src="<?php echo esc_url( plugins_url( '../assets/img/Social-Media-Icons-SAW-Pinterest.png', __FILE__ ) ); ?>" alt="pinterest-share">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            <?php }
+                                        }
+                                    }
+                                    wp_reset_query();
+
+                                    ?>
+                                    <script type="text/javascript">
+                                        jQuery(".press-social-slider .share-tab").click( function () {
+                                                jQuery(this).parent().toggleClass("visible");
+                                            }
+                                        );
+                                    </script>
+                                </div>
 
                                 <?php /******************** Comparison Guides ********************/
                                         /************** TODO: If musician, this won't be here, but it will be musical samples ************/ ?>
@@ -336,8 +402,13 @@ $is_page_builder_used = et_pb_is_pagebuilder_used(get_the_ID());
 
                     <?php endwhile; ?>
                 </div> <!-- #left-area -->
-
-                <?php get_sidebar(); ?>
+                <div id="sidebar">
+                    <?php if ( is_active_sidebar( 'vendor-profile-sidebar' ) ) : ?>
+                        <?php dynamic_sidebar( 'vendor-profile-sidebar' ); ?>
+                        <?php echo do_shortcode('[vendor_url]'); ?>
+                    <?php endif; ?>
+                </div>
+                <?php //get_sidebar(); ?>
             </div> <!-- #content-area -->
         </div> <!-- .container -->
     </div> <!-- #main-content -->
