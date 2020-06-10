@@ -11,9 +11,8 @@ jQuery(document).ready(function () {
            navBar.css("z-index", "99");
        }
     });
-
-
-
+    jQuery("#sidebar").stickybits();
+    jQuery(".vendor-sticky-nav").stickybits();
     // Format callable phone number
     // jQuery('.vendor-phone-call-text').text(function(i, text) {
     //     $phone_formatted = text.replace(/(\d{3})(\d{3})(\d{4})/, '$1-$2-$3');

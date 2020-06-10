@@ -303,8 +303,30 @@ div.in-the-press {
     border: 1px solid var(--light-gray-color);
     border-radius: 5px;
     padding: 10px;
-    margin-bottom: 10px;
+    margin-bottom: 30px;
     overflow: hidden;
+}
+.vendor-profile-sidebar-content.social-sidebar-tabs .social-tabs-triangle {
+    display: inline-block;
+    width: 0;
+    height: 0;
+    border-right: 10px solid transparent;
+    border-top: 12px solid var(--red-color);
+    /*border-bottom: 12px solid transparent;*/
+    border-left: 10px solid transparent;
+    margin-top: -0.2em;
+}
+.vendor-profile-sidebar-content.social-sidebar-tabs {
+    padding: 0;
+    border: none;
+}
+.vendor-profile-sidebar-content.social-sidebar-tabs #social-tabs {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-top: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 .vendor-profile-sidebar-content .vendor-profile-sidebar-title {
     background: var(--red-color);
@@ -316,6 +338,33 @@ div.in-the-press {
     padding: 10px;
     text-transform: uppercase;
     font-size: 1.2em;
+}
+.vendor-profile-sidebar-content.social-sidebar-tabs .vendor-profile-sidebar-title {
+    padding-top: 20px;
+}
+.vendor-profile-sidebar-content.social-sidebar-tabs .ui-tabs .ui-tabs-nav {
+    background: transparent;
+    border: none;
+    display: flex;
+    justify-content: space-between;
+    padding-top: 15px;
+}
+.vendor-profile-sidebar-content.social-sidebar-tabs .ui-tabs .ui-tabs-nav li {
+    border-radius: 0;
+    border: none;
+    background: var(--red-color);
+}
+.vendor-profile-sidebar-content.social-sidebar-tabs .ui-tabs .ui-tabs-nav li a {
+    color: white;
+    padding-left: 5px;
+    padding-right: 5px;
+    font-size: 0.8em;
+}
+.vendor-profile-sidebar-content.social-sidebar-tabs .ui-tabs .ui-tabs-nav li.ui-state-active {
+    background: white;
+}
+.vendor-profile-sidebar-content.social-sidebar-tabs .ui-tabs .ui-tabs-nav li.ui-state-active a {
+    color: black;
 }
 .vendor-profile-sidebar-content .vendor-form-event-date input {
     max-width: 100%;

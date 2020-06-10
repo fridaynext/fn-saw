@@ -8,18 +8,24 @@ Plugin Name: San Antonio Weddings Functionality
 Plugin URI: https://friday-next.com/
 Description: This plugin enhances the functionality of the San Antonio Weddings website, without altering the child theme's functions.php file, so it will survive theme updates / changes.
 Author: Friday Next
-Version: 1.0.5
+Version: 1.0.8
 Author URI: https://friday-next.com
 Text Domain: fn_extras
 */
 
-define( 'FRIDAY_NEXT_EXTRAS_VERSION', '1.0.5' );
+define( 'FRIDAY_NEXT_EXTRAS_VERSION', '1.0.8' );
 add_action( 'after_setup_theme', 'FridayNextExtrasInit', 15 );
 
 function FridayNextExtrasInit() {
     add_action( 'wp_print_styles', 'fn_enqueue_styles' );
 
 }
+
+/*  */
+function my_acf_init() {
+    acf_update_setting('google_api_key', 'AIzaSyDTd1_E-rk9zwLlSdLDMt8W7L6_Y_pKuFk');
+}
+add_action('acf/init', 'my_acf_init');
 
 function fn_enqueue_styles() {
     wp_register_style( 'fn_default_styles', plugins_url('../styles/default.css', __FILE__), array(), FRIDAY_NEXT_EXTRAS_VERSION );
@@ -28,6 +34,8 @@ function fn_enqueue_styles() {
     wp_enqueue_style( 'swiper_style' );
     wp_register_style( 'header_style', plugins_url('../styles/header.css', __FILE__), array(), FRIDAY_NEXT_EXTRAS_VERSION);
     wp_enqueue_style('header_style');
+    wp_register_style( 'jquery-ui-style', '//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css', array(), FRIDAY_NEXT_EXTRAS_VERSION);
+    wp_enqueue_style('jquery-ui-style');
     // 'Vendor List' Page Style
     if( get_post_field( 'post_name', get_post() ) == 'vendor-list' ) {
         wp_register_style( 'vendor_list_style', plugins_url('../styles/vendor-style.css', __FILE__), array(), FRIDAY_NEXT_EXTRAS_VERSION );
@@ -38,12 +46,14 @@ function fn_enqueue_styles() {
     if( get_post_type() == 'vendor_profile' ) {
         wp_register_style( 'vendor_profile_style', plugins_url('../styles/vendor-profile.css', __FILE__), array(), FRIDAY_NEXT_EXTRAS_VERSION );
         wp_enqueue_style( 'vendor_profile_style' );
-        wp_register_script('vendor_profile_script', plugins_url('../scripts/scripts.js', __FILE__), array('jquery', 'swiper_slider'), FRIDAY_NEXT_EXTRAS_VERSION, true);
-        wp_enqueue_script('vendor_profile_script');
         wp_register_script('swiper_slider', 'https://unpkg.com/swiper/js/swiper.min.js');
         wp_enqueue_script('swiper_slider');
         wp_register_script('sticky_bits', plugins_url('../scripts/jquery.stickybits.min.js', __FILE__), array(), FRIDAY_NEXT_EXTRAS_VERSION );
-        wp_enqueue_style('sticky_bits');
+        wp_enqueue_script('sticky_bits');
+        wp_enqueue_script( 'jquery-ui-core' );
+        wp_enqueue_script( 'jquery-ui-tabs' );
+        wp_register_script('vendor_profile_script', plugins_url('../scripts/scripts.js', __FILE__), array('jquery', 'swiper_slider', 'jquery-ui-core'), FRIDAY_NEXT_EXTRAS_VERSION, true);
+        wp_enqueue_script('vendor_profile_script');
     }
 
 }
@@ -244,6 +254,32 @@ function vendor_url_func( $atts ) {
     }
 }
 add_shortcode( 'vendor_url', 'vendor_url_func' );
+
+// display the tabbed fb, ig, pi social media block in the sidebar (and anywhere else!)
+function social_media_tab_func( $atts ) {
+    $html = '<div class="all-tabs-container">';
+    $html .= '<div id="social-tabs">';
+    $html .= '<span class="social-tabs-triangle"></span>
+                <ul>
+                    <li><a href="#facebook">Facebook</a></li>
+                    <li><a href="#pinterest">Pinterest</a></li>
+                    <li><a href="#instagram">Instagram</a></li>        
+                </ul>';
+    $html .= '<div id="facebook">Facebook content here.<br>And a new line.<br>Another.</div>';
+    $html .= '<div id="pinterest">Pinterest content here.<br>And a new line.<br>Another.</div>';
+    $html .= '<div id="instagram">Instagram content here.<br>And a new line.<br>Another.</div>';
+    $html .= '</div></div>';
+    $html .= '<script type="text/javascript">
+                jQuery( function() {
+                    jQuery("#social-tabs").tabs({
+                        event: "mouseover"
+                    });
+                    jQuery(".all-tabs-container").parent().parent().addClass("social-sidebar-tabs");
+                });
+              </script>';
+    return $html;
+}
+add_shortcode( 'social_media_tab', 'social_media_tab_func' );
 
 // Font Awesome Integration
 /**

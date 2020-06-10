@@ -403,10 +403,11 @@ $is_page_builder_used = et_pb_is_pagebuilder_used(get_the_ID());
                     <?php endwhile; ?>
                 </div> <!-- #left-area -->
                 <div id="sidebar">
-                    <?php if ( is_active_sidebar( 'vendor-profile-sidebar' ) ) : ?>
-                        <?php dynamic_sidebar( 'vendor-profile-sidebar' ); ?>
-                        <?php echo do_shortcode('[vendor_url]'); ?>
-                    <?php endif; ?>
+                    <?php if ( is_active_sidebar( 'vendor-profile-sidebar' ) ) :
+                        dynamic_sidebar( 'vendor-profile-sidebar' );
+
+                        echo do_shortcode('[vendor_url]');
+                    endif; ?>
                 </div>
                 <?php //get_sidebar(); ?>
             </div> <!-- #content-area -->
