@@ -9,3 +9,9 @@
     --light-gray-color: #dfdfdf;    /* Some Backgrounds and Icons */
     --lightest-gray-color: #f7f7f7; /* to be used sparingly – mainly on soft gray backgrounds */
 }
+
+/******** SOCIAL SHARE *********/
+.social-sidebar-tabs #social-tabs .social-share-div {
+    padding: 15px .1em .1em;
+    width: 100%;
+}

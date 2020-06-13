@@ -8,17 +8,16 @@ Plugin Name: San Antonio Weddings Functionality
 Plugin URI: https://friday-next.com/
 Description: This plugin enhances the functionality of the San Antonio Weddings website, without altering the child theme's functions.php file, so it will survive theme updates / changes.
 Author: Friday Next
-Version: 1.0.8
+Version: 1.0.9
 Author URI: https://friday-next.com
 Text Domain: fn_extras
 */
 
-define( 'FRIDAY_NEXT_EXTRAS_VERSION', '1.0.8' );
+define( 'FRIDAY_NEXT_EXTRAS_VERSION', '1.0.9' );
 add_action( 'after_setup_theme', 'FridayNextExtrasInit', 15 );
 
 function FridayNextExtrasInit() {
     add_action( 'wp_print_styles', 'fn_enqueue_styles' );
-
 }
 
 /*  */
@@ -41,7 +40,6 @@ function fn_enqueue_styles() {
         wp_register_style( 'vendor_list_style', plugins_url('../styles/vendor-style.css', __FILE__), array(), FRIDAY_NEXT_EXTRAS_VERSION );
         wp_enqueue_style( 'vendor_list_style' );
     }
-
     // 'Vendor Profile' Styles
     if( get_post_type() == 'vendor_profile' ) {
         wp_register_style( 'vendor_profile_style', plugins_url('../styles/vendor-profile.css', __FILE__), array(), FRIDAY_NEXT_EXTRAS_VERSION );
@@ -55,8 +53,21 @@ function fn_enqueue_styles() {
         wp_register_script('vendor_profile_script', plugins_url('../scripts/scripts.js', __FILE__), array('jquery', 'swiper_slider', 'jquery-ui-core'), FRIDAY_NEXT_EXTRAS_VERSION, true);
         wp_enqueue_script('vendor_profile_script');
     }
+    // More Scripts
+    wp_register_script('facebook_share', 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v7.0' );
+    wp_enqueue_script( 'facebook_share' );
+    wp_register_script( 'pinterest_share', 'https://assets.pinterest.com/js/pinit.js' );
+    wp_enqueue_script( 'pinterest_share' );
+
 
 }
+// add async / defer to facebook script
+function add_async_attribute($tag, $handle) {
+    if ( ('facebook_share' !== $handle) || ('pinterest_share' !== $handle) )
+        return $tag;
+    return str_replace( ' src', ' async defer crossorigin="anonymous" nonce="Szqdsx5f" src', $tag );
+}
+add_filter('script_loader_tag', 'add_async_attribute', 10, 2);
 
 // Vendor Profile Sidebar
 function vendor_profile_sidebar() {
@@ -265,9 +276,10 @@ function social_media_tab_func( $atts ) {
                     <li><a href="#pinterest">Pinterest</a></li>
                     <li><a href="#instagram">Instagram</a></li>        
                 </ul>';
-    $html .= '<div id="facebook">Facebook content here.<br>And a new line.<br>Another.</div>';
-    $html .= '<div id="pinterest">Pinterest content here.<br>And a new line.<br>Another.</div>';
-    $html .= '<div id="instagram">Instagram content here.<br>And a new line.<br>Another.</div>';
+    $fb_url = get_field("facebook", get_the_ID());
+    $html .= '<div id="facebook" class="social-share-div"><div class="fb-page" data-href="' . $fb_url . '" data-tabs="timeline" data-width="" data-height="360" data-small-header="true" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="' . $fb_url . '" class="fb-xfbml-parse-ignore"><a href="' . $fb_url  . '">' . get_the_title() . '</a></blockquote></div></div>';
+    $html .= '<div id="pinterest" class="social-share-div"><a data-pin-do="embedUser" data-pin-board-width="100%" data-pin-scale-height="250" data-pin-scale-width="80" href="' . get_field('pinterest', get_the_ID()) . '"></a></div>';
+    $html .= '<div id="instagram" class="social-share-div">Instagram content here.<br>And a new line.<br>Another.</div>';
     $html .= '</div></div>';
     $html .= '<script type="text/javascript">
                 jQuery( function() {

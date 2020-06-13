@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: San Antonio Weddings - Custom Functionality 1.0.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/fn-saw\n"
-"POT-Creation-Date: 2020-06-02 02:52:41+00:00\n"
+"POT-Creation-Date: 2020-06-10 05:39:19+00:00\n"
 "PO-Revision-Date: 2020-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -24,11 +24,19 @@ msgstr ""
 "X-Textdomain-Support: yes\n"
 "X-Generator: grunt-wp-i18n1.0.2\n"
 
-#: includes/functions.php:50 includes/functions.php:80
+#: includes/functions.php:65
+msgid "Vendor Profile"
+msgstr ""
+
+#: includes/functions.php:67
+msgid "Vendor Profile Sidebar"
+msgstr ""
+
+#: includes/functions.php:80 includes/functions.php:110
 msgid "Vendor"
 msgstr ""
 
-#: includes/functions.php:81
+#: includes/functions.php:111
 msgid "Expires"
 msgstr ""
 
@@ -44,7 +52,19 @@ msgstr ""
 msgid "Content entered here will appear inside the module."
 msgstr ""
 
-#: includes/templates/single-vendor_profile.php:307
+#: includes/templates/header.php:154 includes/templates/header.php:324
+msgid "Search &hellip;"
+msgstr ""
+
+#: includes/templates/header.php:156 includes/templates/header.php:326
+msgid "Search for:"
+msgstr ""
+
+#: includes/templates/header.php:206 includes/templates/header.php:275
+msgid "Home"
+msgstr ""
+
+#: includes/templates/single-vendor_profile.php:373
 msgid "Pages:"
 msgstr ""
 
