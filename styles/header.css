@@ -1,18 +1,88 @@
 /****** STYLING THE TOP HEADER NAV ********/
-#menu-header-top-right-menu .header-search {
+#saw-top-header {
+    background-size: 80%;
+}
+#menu-header-top-menu-computer {
+    margin-left: 0;
+    margin-right: 0;
+}
+#menu-header-top-menu-computer .header-search {
     border-right: 1px #a0a0a0 solid;
+    padding-left: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
-#menu-header-top-right-menu li {
+#menu-header-top-menu-computer .header-search a::before {
+    background: url("../includes/assets/img/header-search-icon.svg") no-repeat;
+    background-size: 24px 23px;
+    width: 24px;
+    height: 23px;
+    content: "";
+}
+.header-search-dropdown {
+    /*display: none;*/
+}
+.vendor-login-form form {
+    text-align: left;
+    display: flex;
+    flex-direction: row;
+}
+.vendor-login-form .et_pb_login_form {
+    width: 100% !important;
+}
+.vendor-login-form form p.et_pb_contact_form_field {
+    padding-right: 15px;
+}
+.vendor-login-form form p.et_pb_contact_form_field input, .vendor-login-form form p.et_pb_contact_form_field input[type="password"] {
+    /*padding-top: 15px !important;*/
+    /*padding-bottom: 15px !important;*/
+}
+.header-search-dropdown form.et_pb_searchform {
+    display: flex;
+    align-items: center;
+}
+.header-search-dropdown form.et_pb_searchform input[type="text"] {
+    height: auto !important;
+    width: 98%;
+    padding-left: 20px !important;
+}
+.header-search-dropdown form.et_pb_searchform div {
+    width: 100%;
+}
+.header-search-dropdown form.et_pb_searchform::before {
+    background: url("../includes/assets/img/teal-w-saw-icon.png") no-repeat;
+    background-size: 50px 48px;
+    width: 50px;
+    height: 48px;
+    content: "";
+    display: block;
+    float: left;
+    padding-right: 15px;
+}
+.header-search-dropdown.visible {
+    display: block;
+}
+#menu-header-top-menu-computer .vendor-login {
+    padding-right: 5px;
+}
+#menu-header-top-menu-computer li {
     margin-top: 0;
-    padding-top: 8px;
+    padding-top: 0;
 }
-#menu-header-top-right-menu li a {
+@media screen and (max-width: 1100px){
+    #menu-header-top-menu-computer li {
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+}
+#menu-header-top-menu-computer li a {
     text-transform: uppercase;
 }
-#menu-header-top-right-menu .header-search a, #menu-header-top-right-menu .vendor-login a {
+#menu-header-top-menu-computer .header-search a, #menu-header-top-menu-computer .vendor-login a {
     font-size: .8em;
 }
-#menu-header-top-right-menu .social-icon {
+#menu-header-top-menu-computer .social-icon {
     padding-left: 5px;
     padding-right: 5px;
+    font-size: 1.5em
 }

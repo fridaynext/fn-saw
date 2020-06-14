@@ -11,6 +11,10 @@ jQuery(document).ready(function () {
            navBar.css("z-index", "99");
        }
     });
+    jQuery(".header-search a").click(function () {
+        jQuery(".header-search-dropdown").toggleClass("visible");
+    });
+    // class to give display: block; --> header-search-dropdown
     jQuery("#sidebar").stickybits();
     jQuery(".vendor-sticky-nav").stickybits();
     // Format callable phone number
