@@ -8,16 +8,17 @@ Plugin Name: San Antonio Weddings Functionality
 Plugin URI: https://friday-next.com/
 Description: This plugin enhances the functionality of the San Antonio Weddings website, without altering the child theme's functions.php file, so it will survive theme updates / changes.
 Author: Friday Next
-Version: 1.1.1
+Version: 1.1.4
 Author URI: https://friday-next.com
 Text Domain: fn_extras
 */
 
-define( 'FRIDAY_NEXT_EXTRAS_VERSION', '1.1.1' );
+define( 'FRIDAY_NEXT_EXTRAS_VERSION', '1.1.4' );
 add_action( 'after_setup_theme', 'FridayNextExtrasInit', 15 );
 
 function FridayNextExtrasInit() {
     add_action( 'wp_print_styles', 'fn_enqueue_styles' );
+    add_action( 'wp_enqueue_scripts', 'fn_enqueue_scripts' );
 }
 
 /*  */
@@ -27,40 +28,61 @@ function my_acf_init() {
 add_action('acf/init', 'my_acf_init');
 
 function fn_enqueue_styles() {
-    wp_register_style( 'fn_default_styles', plugins_url('../styles/default.css', __FILE__), array(), FRIDAY_NEXT_EXTRAS_VERSION );
+    wp_register_style( 'fn_default_styles', plugins_url('assets/css/default.css', __FILE__), array(), FRIDAY_NEXT_EXTRAS_VERSION );
     wp_enqueue_style( 'fn_default_styles' );
     wp_register_style('swiper_style', 'https://unpkg.com/swiper/css/swiper.min.css', array(), FRIDAY_NEXT_EXTRAS_VERSION);
     wp_enqueue_style( 'swiper_style' );
-    wp_register_style( 'header_style', plugins_url('../styles/header.css', __FILE__), array(), FRIDAY_NEXT_EXTRAS_VERSION);
+    wp_register_style( 'header_style', plugins_url('assets/css/header.css', __FILE__), array(), FRIDAY_NEXT_EXTRAS_VERSION);
     wp_enqueue_style('header_style');
     wp_register_style( 'jquery-ui-style', '//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css', array(), FRIDAY_NEXT_EXTRAS_VERSION);
     wp_enqueue_style('jquery-ui-style');
+
     // 'Vendor List' Page Style
     if( get_post_field( 'post_name', get_post() ) == 'vendor-list' ) {
-        wp_register_style( 'vendor_list_style', plugins_url('../styles/vendor-style.css', __FILE__), array(), FRIDAY_NEXT_EXTRAS_VERSION );
+        wp_register_style( 'vendor_list_style', plugins_url('assets/css/vendor-style.css', __FILE__), array(), FRIDAY_NEXT_EXTRAS_VERSION );
         wp_enqueue_style( 'vendor_list_style' );
     }
     // 'Vendor Profile' Styles
     if( get_post_type() == 'vendor_profile' ) {
-        wp_register_style( 'vendor_profile_style', plugins_url('../styles/vendor-profile.css', __FILE__), array(), FRIDAY_NEXT_EXTRAS_VERSION );
+        wp_register_style( 'vendor_profile_style', plugins_url('assets/css/vendor-profile.css', __FILE__), array(), FRIDAY_NEXT_EXTRAS_VERSION );
         wp_enqueue_style( 'vendor_profile_style' );
-        wp_register_script('swiper_slider', 'https://unpkg.com/swiper/js/swiper.min.js');
-        wp_enqueue_script('swiper_slider');
-        wp_register_script('sticky_bits', plugins_url('../scripts/jquery.stickybits.min.js', __FILE__), array(), FRIDAY_NEXT_EXTRAS_VERSION );
-        wp_enqueue_script('sticky_bits');
-        wp_enqueue_script( 'jquery-ui-core' );
-        wp_enqueue_script( 'jquery-ui-tabs' );
-        wp_register_script('vendor_profile_script', plugins_url('../scripts/scripts.js', __FILE__), array('jquery', 'swiper_slider', 'jquery-ui-core'), FRIDAY_NEXT_EXTRAS_VERSION, true);
-        wp_enqueue_script('vendor_profile_script');
     }
-    // More Scripts
-    wp_register_script('facebook_share', 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v7.0' );
-    wp_enqueue_script( 'facebook_share' );
-    wp_register_script( 'pinterest_share', 'https://assets.pinterest.com/js/pinit.js' );
-    wp_enqueue_script( 'pinterest_share' );
-
-
 }
+
+function fn_enqueue_scripts() {
+    // Scripts
+    wp_register_script('facebook_share', 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v7.0' );
+//    wp_enqueue_script( 'facebook_share' );
+    wp_register_script( 'pinterest_share', 'https://assets.pinterest.com/js/pinit.js' );
+//    wp_enqueue_script( 'pinterest_share' );
+
+
+    // Just for the Vendor Profile Page (save bandwidth elsewhere)
+    if( get_post_type() == 'vendor_profile' ) {
+        wp_register_script('swiper_slider', 'https://unpkg.com/swiper/js/swiper.min.js');
+        wp_register_script('sticky_bits', plugins_url('assets/js/jquery.stickybits.min.js', __FILE__), array('swiper_slider', 'jquery-ui-tabs'), FRIDAY_NEXT_EXTRAS_VERSION );
+        wp_enqueue_script('sticky_bits');
+    }
+
+    wp_register_script('fn_scripts', plugins_url('assets/js/scripts.js', __FILE__), array('facebook_share', 'pinterest_share', 'jquery-ui-core', ), FRIDAY_NEXT_EXTRAS_VERSION, true);
+    wp_enqueue_script('fn_scripts');
+}
+
+// Custom Login Logo
+function saw_login_logo() { ?>
+    <style type="text/css">
+        #login h1 a, .login h1 a {
+            background-image: url(<?php echo plugins_url('assets/img/saw-login-logo.png', __FILE__); ?>);
+            height:65px;
+            width:320px;
+            background-size: 320px 65px;
+            background-repeat: no-repeat;
+            padding-bottom: 30px;
+        }
+    </style>
+<?php }
+add_action( 'login_enqueue_scripts', 'saw_login_logo' );
+
 // add async / defer to facebook script
 function add_async_attribute($tag, $handle) {
     if ( ('facebook_share' !== $handle) || ('pinterest_share' !== $handle) )

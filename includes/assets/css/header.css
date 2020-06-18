@@ -13,25 +13,65 @@
     margin-bottom: 10px;
 }
 #menu-header-top-menu-computer .header-search a::before {
-    background: url("../includes/assets/img/header-search-icon.svg") no-repeat;
+    background: url("../img/header-search-icon.svg") no-repeat;
     background-size: 24px 23px;
     width: 24px;
     height: 23px;
     content: "";
 }
 .header-search-dropdown {
-    /*display: none;*/
+    display: none;
 }
-.vendor-login-form form {
-    text-align: left;
-    display: flex;
-    flex-direction: row;
+.header-search-dropdown.visible {
+    display: block;
+}
+.vendor-login-form .et_pb_newsletter_description h3::before {
+    background: url("../img/teal-w-saw-icon.png") no-repeat;
+    background-size: 39px 37px;
+    width: 39px;
+    height: 37px;
+    content: "";
+    display: block;
+    float: left;
+    padding-right: 15px;
+    margin-top: -3px;
+}
+.vendor-login-form {
+    display: none;
+}
+.vendor-login-form.visible {
+    display: block;
 }
 .vendor-login-form .et_pb_login_form {
-    width: 100% !important;
+    width: 70% !important;
+    float: left;
+}
+.vendor-login-form form p {
+    float: left;
+    margin-top: -40px;
 }
 .vendor-login-form form p.et_pb_contact_form_field {
     padding-right: 15px;
+    width: 40%;
+    padding-bottom: 5px;
+    margin-top: 0;
+}
+.vendor-login-form form p.et_pb_forgot_password {
+    text-align: right;
+    width: 80%;
+    padding-right: 15px;
+    margin-top: 0;
+}
+.vendor-login-form form button {
+    font-size: 16px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    background: var(--red-color);
+}
+.vendor-login-form form button:hover {
+    font-size: 16px;
+    padding: 3px 2em 3px 0.7em !important;
+
 }
 .vendor-login-form form p.et_pb_contact_form_field input, .vendor-login-form form p.et_pb_contact_form_field input[type="password"] {
     /*padding-top: 15px !important;*/
@@ -50,7 +90,7 @@
     width: 100%;
 }
 .header-search-dropdown form.et_pb_searchform::before {
-    background: url("../includes/assets/img/teal-w-saw-icon.png") no-repeat;
+    background: url("../img/teal-w-saw-icon.png") no-repeat;
     background-size: 50px 48px;
     width: 50px;
     height: 48px;
@@ -58,9 +98,6 @@
     display: block;
     float: left;
     padding-right: 15px;
-}
-.header-search-dropdown.visible {
-    display: block;
 }
 #menu-header-top-menu-computer .vendor-login {
     padding-right: 5px;
