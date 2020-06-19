@@ -1,7 +1,7 @@
 <?php
 /**
  * @package FN_Extras
- * @version 1.0.2
+ * @version 1.1.4
  */
 /*
 Plugin Name: San Antonio Weddings Functionality

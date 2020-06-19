@@ -3,7 +3,7 @@
 Plugin Name: San Antonio Weddings - Custom Functionality
 Plugin URI:  https://friday-next.com
 Description: Access to custom Divi modules, theme templates, and more for the SAW site.
-Version:     1.0.0
+Version:     1.1.4
 Author:      Friday Next
 Author URI:  https://friday-next.com
 License:     GPL2
