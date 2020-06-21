@@ -39,6 +39,7 @@
     "prefix": "saw"
   },
   "devDependencies": {
+    "jquery": "^3.5.1",
     "stickybits": "^3.7.7"
   }
 }

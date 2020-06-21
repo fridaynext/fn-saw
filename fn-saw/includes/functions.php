@@ -28,23 +28,23 @@ function my_acf_init() {
 add_action('acf/init', 'my_acf_init');
 
 function fn_enqueue_styles() {
-    wp_register_style( 'fn_default_styles', plugins_url('/default.css', __FILE__), array(), FRIDAY_NEXT_EXTRAS_VERSION );
+    wp_register_style( 'fn_default_styles', plugins_url('assets/css/default.css', __FILE__), array(), FRIDAY_NEXT_EXTRAS_VERSION );
     wp_enqueue_style( 'fn_default_styles' );
     wp_register_style('swiper_style', 'https://unpkg.com/swiper/css/swiper.min.css', array(), FRIDAY_NEXT_EXTRAS_VERSION);
     wp_enqueue_style( 'swiper_style' );
-    wp_register_style( 'header_style', plugins_url('/header.css', __FILE__), array(), FRIDAY_NEXT_EXTRAS_VERSION);
+    wp_register_style( 'header_style', plugins_url('assets/css/header.css', __FILE__), array(), FRIDAY_NEXT_EXTRAS_VERSION);
     wp_enqueue_style('header_style');
     wp_register_style( 'jquery-ui-style', '//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css', array(), FRIDAY_NEXT_EXTRAS_VERSION);
     wp_enqueue_style('jquery-ui-style');
 
     // 'Vendor List' Page Style
     if( get_post_field( 'post_name', get_post() ) == 'vendor-list' ) {
-        wp_register_style( 'vendor_list_style', plugins_url('/vendor-style.css', __FILE__), array(), FRIDAY_NEXT_EXTRAS_VERSION );
+        wp_register_style( 'vendor_list_style', plugins_url('assets/css/vendor-style.css', __FILE__), array(), FRIDAY_NEXT_EXTRAS_VERSION );
         wp_enqueue_style( 'vendor_list_style' );
     }
     // 'Vendor Profile' Styles
     if( get_post_type() == 'vendor_profile' ) {
-        wp_register_style( 'vendor_profile_style', plugins_url('/vendor-profile.css', __FILE__), array(), FRIDAY_NEXT_EXTRAS_VERSION );
+        wp_register_style( 'vendor_profile_style', plugins_url('assets/css/vendor-profile.css', __FILE__), array(), FRIDAY_NEXT_EXTRAS_VERSION );
         wp_enqueue_style( 'vendor_profile_style' );
     }
 }
@@ -60,11 +60,11 @@ function fn_enqueue_scripts() {
     // Just for the Vendor Profile Page (save bandwidth elsewhere)
     if( get_post_type() == 'vendor_profile' ) {
         wp_register_script('swiper_slider', 'https://unpkg.com/swiper/js/swiper.min.js');
-        wp_register_script('sticky_bits', plugins_url('scripts/js/jquery.stickybits.min.js', __FILE__), array('swiper_slider', 'jquery-ui-tabs'), FRIDAY_NEXT_EXTRAS_VERSION );
+        wp_register_script('sticky_bits', plugins_url('assets/js/jquery.stickybits.min.js', __FILE__), array('swiper_slider', 'jquery-ui-tabs'), FRIDAY_NEXT_EXTRAS_VERSION );
         wp_enqueue_script('sticky_bits');
     }
 
-    wp_register_script('fn_scripts', plugins_url('assets/js/scripts.js', __FILE__), array('jquery', 'facebook_share', 'pinterest_share', 'jquery-ui-core', ), FRIDAY_NEXT_EXTRAS_VERSION, true);
+    wp_register_script('fn_scripts', plugins_url('assets/js/scripts.js', __FILE__), array('facebook_share', 'pinterest_share', 'jquery-ui-core', ), FRIDAY_NEXT_EXTRAS_VERSION, true);
     wp_enqueue_script('fn_scripts');
 }
 

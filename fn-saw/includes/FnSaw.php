@@ -27,7 +27,7 @@ class SAW_FnSaw extends DiviExtension {
 	 *
 	 * @var string
 	 */
-	public $version = '1.1.4';
+	public $version = '1.0.0';
 
 	/**
 	 * SAW_FnSaw constructor.

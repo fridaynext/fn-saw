@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: San Antonio Weddings - Custom Functionality 1.1.4\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/fn-saw\n"
-"POT-Creation-Date: 2020-06-19 21:36:53+00:00\n"
+"POT-Creation-Date: 2020-06-19 20:44:51+00:00\n"
 "PO-Revision-Date: 2020-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -24,57 +24,46 @@ msgstr ""
 "X-Textdomain-Support: yes\n"
 "X-Generator: grunt-wp-i18n1.0.2\n"
 
-#: fn-saw/includes/functions.php:98 includes/functions.php:98
+#: includes/functions.php:98
 msgid "Vendor Profile"
 msgstr ""
 
-#: fn-saw/includes/functions.php:100 includes/functions.php:100
+#: includes/functions.php:100
 msgid "Vendor Profile Sidebar"
 msgstr ""
 
-#: fn-saw/includes/functions.php:113 fn-saw/includes/functions.php:143
 #: includes/functions.php:113 includes/functions.php:143
 msgid "Vendor"
 msgstr ""
 
-#: fn-saw/includes/functions.php:144 includes/functions.php:144
+#: includes/functions.php:144
 msgid "Expires"
 msgstr ""
 
-#: fn-saw/includes/modules/HelloWorld/HelloWorld.php:15
 #: includes/modules/HelloWorld/HelloWorld.php:15
 msgid "Hello World"
 msgstr ""
 
-#: fn-saw/includes/modules/HelloWorld/HelloWorld.php:21
 #: includes/modules/HelloWorld/HelloWorld.php:21
 msgid "Content"
 msgstr ""
 
-#: fn-saw/includes/modules/HelloWorld/HelloWorld.php:24
 #: includes/modules/HelloWorld/HelloWorld.php:24
 msgid "Content entered here will appear inside the module."
 msgstr ""
 
-#: fn-saw/includes/templates/header.php:154
-#: fn-saw/includes/templates/header.php:324 includes/templates/header.php:154
-#: includes/templates/header.php:324
+#: includes/templates/header.php:154 includes/templates/header.php:324
 msgid "Search &hellip;"
 msgstr ""
 
-#: fn-saw/includes/templates/header.php:156
-#: fn-saw/includes/templates/header.php:326 includes/templates/header.php:156
-#: includes/templates/header.php:326
+#: includes/templates/header.php:156 includes/templates/header.php:326
 msgid "Search for:"
 msgstr ""
 
-#: fn-saw/includes/templates/header.php:206
-#: fn-saw/includes/templates/header.php:275 includes/templates/header.php:206
-#: includes/templates/header.php:275
+#: includes/templates/header.php:206 includes/templates/header.php:275
 msgid "Home"
 msgstr ""
 
-#: fn-saw/includes/templates/single-vendor_profile.php:373
 #: includes/templates/single-vendor_profile.php:373
 msgid "Pages:"
 msgstr ""

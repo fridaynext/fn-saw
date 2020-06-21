@@ -1,6 +1,7 @@
-jQuery(document).ready(function ( $ ) {
+import $ from 'jquery';
+$(document).ready(function () {
     // Change the nav bar to fixed position after a certain amount of scroll
-    let navBar = jQuery(".vendor-sticky-nav");
+    let navBar = $(".vendor-sticky-nav");
     $("body").scroll(function () {
         let fromTop = window.scrollY;
         // 54px - once the nav bar is 54px from the top, make it fixed
