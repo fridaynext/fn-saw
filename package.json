@@ -10,7 +10,7 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "serialize-javascript": ">=2.1.1",
-    "swiper": "^5.4.0",
+    "swiper": "^6.5.1",
     "underscore.string": ">=3.3.5",
     "webpack-dev-server": "2.11.0",
     "yarn": "^1.22.4"
